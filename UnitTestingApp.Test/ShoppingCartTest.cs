@@ -56,4 +56,23 @@ public class ShoppingCartTest
         Assert.Equal(result, dbMock.ProcessResult);
         Assert.Equal("shoes", dbMock.ProductBeingProcessed.Name);
     }
+
+    [Fact]
+    public void AddProduct_Failure_DueToInvalidPayload()
+    {
+        // Given
+        var dbMock = new DbServiceMock();
+        dbMock.ProcessResult = false;
+
+        var shoppingCart = new ShoppingCart(dbMock);
+
+
+        // When
+        var result = shoppingCart.AddProduct(null);
+
+
+        // Assert
+        Assert.False(result);
+        Assert.Equal(result, dbMock.ProcessResult);
+    }
 }
