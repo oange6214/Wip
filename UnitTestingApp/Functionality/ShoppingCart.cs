@@ -28,4 +28,20 @@ public class ShoppingCart
         _dbService.SaveItemToShoppingCart(product);
         return true;
     }
+
+    public bool DeleteProduct(int? id)
+    {
+        if (id == null)
+        {
+            return false;
+        }
+
+        if (id == 0)
+        {
+            return false;
+        }
+
+        _dbService.RemoveItemFromShoppingCart(Convert.ToInt32(id));
+        return true;
+    }
 }
