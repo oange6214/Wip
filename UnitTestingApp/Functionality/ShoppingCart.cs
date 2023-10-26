@@ -4,8 +4,8 @@ public record Product(int Id, string Name, double price);
 
 public   interface IDbService
 {
-    bool SaveItemToShoppingCart(Product prod);
-    bool RemoveItemFromShoppingCart(int prodId);
+    bool SaveItemToShoppingCart(Product? prod);
+    bool RemoveItemFromShoppingCart(int? prodId);
 }
 
 public class ShoppingCart
@@ -41,7 +41,7 @@ public class ShoppingCart
             return false;
         }
 
-        _dbService.RemoveItemFromShoppingCart(Convert.ToInt32(id));
+        _dbService.RemoveItemFromShoppingCart(id);
         return true;
     }
 }
