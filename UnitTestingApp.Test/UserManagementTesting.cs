@@ -21,4 +21,24 @@ public class UserManagementTesting
         Assert.Equal("Lin", savedUser.lastName);
         Assert.False(savedUser.VerifiedEmail);
     }
+
+    [Fact]
+    public void Update_UpdateMobileNumber()
+    {
+        // Arrange
+        var userManagement = new UserManagement();
+
+        // Act
+        userManagement.Add(new("Jed", "Lin"));
+
+        var firstUser = userManagement.AllUsers.First();
+        firstUser.Phone = "+886989140123";
+
+        userManagement.UpdatePhone(firstUser);
+
+        // Assert
+        var savedUser = Assert.Single(userManagement.AllUsers);
+        Assert.NotNull(savedUser);
+        Assert.Equal("+886989140123", savedUser.Phone);
+    }
 }
